@@ -12,7 +12,8 @@ out
 *.iws
 *.iml
 .idea
-
+# dev batch files
+buildandaddtomods.bat
 # gradle
 build
 .gradle

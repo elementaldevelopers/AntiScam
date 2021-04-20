@@ -56,7 +56,7 @@ public class APIGrabber {
 			while ((inputLine = in.readLine()) != null) 
 				outputline += inputLine;
 			JsonObject json = parser.parse(outputline).getAsJsonObject();
-			String uuid = json.get("uuid").getAsString();
+			String uuid = json.get("id").getAsString();
 			return uuid;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

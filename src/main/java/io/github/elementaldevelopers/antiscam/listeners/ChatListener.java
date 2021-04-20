@@ -7,7 +7,6 @@ import com.google.gson.JsonParser;
 
 import io.github.elementaldevelopers.antiscam.utils.APIGrabber;
 import io.github.elementaldevelopers.antiscam.utils.MessageChecker;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -29,12 +28,13 @@ public class ChatListener {
         String message = event.message.getUnformattedText();
         message = message.replaceAll(character + ".", "");
         String IGN = MessageChecker.checkMessage(message);
-        if (IGN == "Not a chat message" || IGN == null) return;
+        if (IGN == "Not a chat message") return;
         String uuid = APIGrabber.getUUID(IGN);
-        if (IGN == "Error happened") return;
-        if (IGN == "IGN Not Valid") 
+        if (uuid == "Error happened") return;
+        if (uuid == "IGN Not Valid") 
         	System.err.println("IGN Not working, fix");
-        if (json.get(IGN) != null) {
+        System.out.println(uuid);
+        if (json.get(uuid) != null) {
         	event.setCanceled(true);
         }
     }

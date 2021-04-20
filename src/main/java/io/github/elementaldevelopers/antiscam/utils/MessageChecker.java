@@ -14,7 +14,6 @@ public class MessageChecker {
 	private static String extractIGN(String message, String whichone) {
 		Matcher m = hasrank.matcher(message);
 		String[] list = message.split(" ");
-		System.out.println(Arrays.toString(list));
 		boolean hasrankbool = m.find();
 		if (whichone == "guild" || whichone ==  "party") {
 			if (hasrankbool) {
@@ -24,7 +23,12 @@ public class MessageChecker {
 		}
 		if (whichone == "all") {
 			String[] l = message.split("(\\[.*?])");
-			message = l[1];
+			if (hasrankbool) {
+				message = l[1];
+			} else {
+				message = l[0];
+			}
+			
 			message = message.split(":")[0];
 			message = message.replace(" ", "");
 			return message;
